@@ -1,8 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-// const Square = require("./square.svg");
-// const Circle = require("./circle.svg");
-// const Triangle = require("./triangle.svg");
+const { Circle, Triangle, Square } = require("./lib/shapes");
 
 function svgFileContent({ text, textColor, shape, shapeColor }, shapeContent) {
   return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -51,12 +49,12 @@ inquirer.prompt([
   } 
   else if (answers.shape === "square") {
     const square = new Square();
-    square.setcolor(answers.shapeColor);
+    square.setColor(answers.shapeColor);
     shapeContent = square.render();
   } 
   else if (answers.shape === "triangle") {
     const triangle = new Triangle();
-    triangle.setcolor(answers.shapeColor);
+    triangle.setColor(answers.shapeColor);
     shapeContent = triangle.render();
   } 
   else {
