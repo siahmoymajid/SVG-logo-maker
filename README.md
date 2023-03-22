@@ -11,3 +11,6 @@ I am also able to enter the inputs for all the promt which takes me to SVG file 
 ASKABC and tutor assisted me with this assignment.
 
 ## Screenshots
+
+[Index.js](./assets/images/svg.circle.PNG)
+[Index.js](./assets/images/SVG.triangle.PNG)
