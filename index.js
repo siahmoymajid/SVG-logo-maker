@@ -1,81 +1,74 @@
-const inquire = require('inquire');
-const = require ('fs');
-const square = require('./square.js');
-const circle = require('./circle.js');
-const triangle = require('./triangle.js');
+const inquirer = require("inquirer");
+const fs = require("fs");
+const Square = require("./square.svg");
+const Circle = require("./circle.svg");
+const Triangle = require("./triangle.svg");
 
-function svgFileContent({ text, TextColor,shape,ShapeColor},shapeContent){
-  return '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">'
-  ${shapeContent}
- <text x="180" y="130" font-size="64" text-anchor="middle" fill="${colorText}">${text}</text>
-</svg>';
-
+function svgFileContent({ text, textColor, shape, shapeColor }, shapeContent) {
+  return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${shapeContent}
+    <text x="150" y="130" font-size="64" text-anchor="middle" fill="${textColor}">${text}</text>
+  </svg>`;
 }
 
-inquire.prompt([
-  {
-    type: "input",
-    name:"text",
-    message: "Text for the Logo(up to three characters)",
-    validate: function(input){
-      if(input.length <=3){
-        return true;
-      }
-      else {
-        return "Logo must be 3 characters or less"
-      }
-  
+inquirer
+  .prompt([
+    {
+      type: "input",
+      name: "text",
+      message: "Text for the Logo (up to three characters)",
+      validate: function (input) {
+        if (input.length <= 3) {
+          return true;
+        } else {
+          return "Logo must be 3 characters or less";
+        }
+      },
+    },
+    {
+      type: "input",
+      name: "textColor",
+      message: "Choose a text color",
+      
+    },
+    {
+      type: "list",
+      name: "shape",
+      message: "Type of shape",
+      choices: ["circle", "square", "triangle"],
+    },
+    {
+      type: "input",
+      name: "shapeColor",
+      message: "Pick a color for the shape",
+    
+    },
+  ])
+    .then((answers) => {
+    let shapeContent = "";
+    if (answers.shape === "circle") {
+      const circle = new Circle();
+      circle.setcolor(answers.shapeColor);
+      shapeContent = circle.render();
+    } else if (answers.shape === "square") {
+      const square = new Square();
+      square.setcolor(answers.shapeColor);
+      shapeContent = square.render();
+    } else if (answers.shape === "triangle") {
+      const triangle = new Triangle();
+      triangle.setcolor(answers.shapeColor);
+      shapeContent = triangle.render();
+    } else {
+      console.log("Error");
     }
-  },
-{
-  type: "input",
-  name: "TextColor",
-  message: "Choose a text color",
-  choices: ["red","green","blue", "black","pink","yellow","brown",]
-},
-{
-  type: "list",
-  name:"shape",
-  message: "Type of shape",
-  choices: ["circle","square","triangle"]
-  
-},
+    const content = svgFileContent(answers, shapeContent);
+    return fs.writeFile("./lib/logo.svg", content, (error) => {
+      error ? console.log(error) : console.log("Generated a SVG File!");
+    });
+  })
+  .catch((error) => {
+    console.log("Error: Cannot make file");
+  });
 
-{
-  type: "inpute",
-  name: "shapeColor",
-  message: "pick a color for the shape",
-},
-])
-
-.then((answers)=>{
-  const shapeContent ="",
-  if (answers.shape == "circle") {
-    const circle = new circle();
-    circle.setcolor(answers.ShapeColor);
-    shapeContent = circle.render();
-  }
-  else if (answers.shape == "square") {
-    const square = new square();
-    square.setcolor(answers.ShapeColor);
-    shapeContent = square.render();
-    
-  }
-  else if (answers.shape == "triangle") {
-    const triangle = new triangle();
-    triangle.setcolor(answers.ShapeColor);
-    shapeContent = square.render();
-  }
-  else{
-    console.log (Error);
-  }
-  const content = svgFileContent(answers,shapeContent);
-  fs.writeFile("logo.svg", content, (error)=>
-  error? console.log( error) :console.log(Made a SVG File!)
-  );
-    
-})
-.catch((error)=>{
-  console.Console.log("error cannot make file");
-})
+ 
 
