@@ -1,16 +1,12 @@
 ## SVG-logo-maker
 
-With this application I am able to enter up to three characters, text color and prompted to the list of shapes such as circle, triangle, square etc.
-I am also able to enter the inputs for all the promt which takes me to SVG file that is named as "logo-SVG" In the browser I am able to see the "logo-SVG" with a image that is 300x200 pixel.
+The SVG Logo Maker is an application that empowers users to input up to three characters, select text color, and choose from a variety of shapes including circles, triangles, and squares. Upon entering the desired inputs, the application generates an SVG file named 'logo-SVG', which can be conveniently viewed in the browser as a high-quality image with dimensions of 300x200 pixels.
 
 ## link
- 
- [click here](https://github.com/siahmoymajid/SVG-logo-maker)
 
-## Notes
-ASKABC and tutor assisted me with this assignment.
+[Github](https://github.com/siahmoymajid/SVG-logo-maker)
 
 ## Screenshots
 
-[Index.js](./assets/images/svg.circle.PNG)
-[Index.js](./assets/images/SVG.triangle.PNG)
+![Circle](assets/images/svg.circle.PNG)
+![triangle](assets/images/SVG.triangle.PNG)
